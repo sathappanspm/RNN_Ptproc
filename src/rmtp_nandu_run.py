@@ -49,15 +49,12 @@ with tf.Session() as sess:
         eseq = real_batch[0]#np.flip(np.abs(real_batch[0]), axis=2)
         seqlen = real_batch[1]
         #print(eseq[0,:, :])
-        print(eseq.shape)
         xin = eseq[:, :-1, :]
         yout = eseq[:, 1:, :]
         rt_args = {"x_in:0": xin, "y_out:0": yout,
                    "lenmask:0": seqlen}
 
-        print(xin[:1, :2, :])
-        break
-        #_, totalloss, timeloss, markerloss = sess.run([rt._train, rt._cost, rt._timeloss, rt._markerloss], feed_dict=rt_args)
-        #print("total:{:.4}, time:{:.4}, marker: {:.4}".format(totalloss, timeloss, markerloss))
+        _, totalloss, timeloss, markerloss = sess.run([rt._train, rt._cost, rt._timeloss, rt._markerloss], feed_dict=rt_args)
+        print("total:{:.4}, time:{:.4}, marker: {:.4}".format(totalloss, timeloss, markerloss))
 
 
